@@ -1,0 +1,27 @@
+#ifndef __IDENTIFIER_TABLE_H__
+#define __IDENTIFIER_TABLE_H__
+
+#include "common.h"
+#include <string>
+#include <map>
+#include "IdentifierInfo.h"
+
+class Table {
+    static Table *_instance; // 싱글톤 객체를 가리키는 정적 필드
+    std::map<std::string, IdentifierInfo> _table; // 실제 식별자 표 객체
+
+private: // tbl을 싱글톤 객체로 만들기 위해 생성자를 숨긴다
+    explicit Table();
+    ~Table();
+
+public:
+    // tbl 싱글톤 객체의 인스턴스를 가져옵니다.
+    static Table *instance();
+    // 식별자에 대한 접근자, 설정자 함수입니다.
+    IdentifierInfo &get(const std::string &identifier);
+    void set(const std::string &identifier, const IdentifierInfo &value);
+    // 식별자 표에 식별자가 등록되어있는지 확인합니다.
+    bool exist(const std::string &identifier) const;
+};
+
+#endif
