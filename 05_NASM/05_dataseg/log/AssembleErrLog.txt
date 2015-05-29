@@ -1,0 +1,1 @@
+C:\Users\HandyMain\Desktop\일반 파일\QuickNASM\project\05_dataseg\dataseg.asm:10: warning: uninitialised space declared in non-BSS section `.data': zeroing
