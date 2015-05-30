@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:00_CIL/00_CIL.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:01_HelloWorld/01_HelloWorld.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:02_PrintValue/02_PrintValue.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:03_Calculation/03_Calculation.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:04_Jump/04_Jump.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:05_Condition/05_Condition.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:06_Loop/06_Loop.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:07_Procedure/07_Procedure.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:08_Memory/08_Memory.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:09_LocalVariable/09_LocalVariable.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:10_LocVarSp/10_LocVarSp.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:11_LocVarBp/11_LocVarBp.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:12_PushPop/12_PushPop.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:13_SpProc/13_SpProc.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:14_SpArrange/14_SpArrange.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:15_SpSolution/15_SpSolution.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:16_ProcNaked/16_ProcNaked.xcodeproj">
+   </FileRef>
+</Workspace>

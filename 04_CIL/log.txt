@@ -1,0 +1,6 @@
+[2015-05-15] Revision: 1.0.0.0
+- First supported Windows 7 only
+
+[2015-05-30] Revision: 1.0.0.1
+- Now CIL supports Windows 7, Ubuntu Linux and Mac OS X
+- Project 13 bug fixed
