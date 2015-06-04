@@ -1,0 +1,74 @@
+<html>
+  <body>
+    <script>
+      var foo = 1, bar = 2;
+      
+      // 조건문 예제: if
+      if (foo == 1) {
+        if (bar == 2)
+          alert("num1 is 1 and num2 is 2");
+        else
+          alert("num1 is not 1 or num2 is not 2");
+      }
+      
+      // 조건문 예제: switch 1
+      switch (foo) {
+        case 0:
+          alert("num1 is 0");
+          break;
+        case 1:
+        case 2:
+          alert("num1 is 1 or 2");
+          break;
+        default:
+          alert("num1 is not 0, 1 and 2");
+          break;
+      }
+      
+      // 조건문 예제: switch 2
+      foo = 'hello';
+      switch (foo) { // switch 구문의 대상으로 문자열이 들어갈 수 있습니다.
+        case 'hi': alert(0); break;
+        case 'hello': alert(1); break;
+        case 'good day': alert(2); break;
+        default: alert(3); break;
+      }
+      
+      // 반복문 예제: for
+      // 1부터 3까지 출력하는 예제입니다.
+      for (var i=0; i<10; ++i) {
+        if (i > 3)
+          break;
+        alert("Hello, " + (i+1) + "!");
+      }
+      
+      
+      // 반복문 예제: while
+      // 5 이하의 짝수를 출력합니다.
+      foo = 5;
+      while (foo > 0) { // 양수인 foo에 대해
+        if (foo % 2 == 1) { // foo가 홀수라면
+          --foo;
+          continue; // 그냥 지나갑니다.
+        }
+        
+        alert(foo); // 지나가지 않은 수를 출력합니다.
+        --foo; // foo를 하나 감소시킵니다.
+      }
+      
+      // 반복문 예제: do-while
+      // 5 이하의 홀수를 출력합니다.
+      foo = 5;
+      do {
+        if (foo % 2 == 0) {
+          --foo;
+          continue;
+        }
+          
+        alert(foo); // 지나가지 않은 수를 출력합니다.
+        --foo; // foo를 하나 감소시킵니다.
+      } while (foo > 0);
+      
+    </script>
+  </body>
+</html>

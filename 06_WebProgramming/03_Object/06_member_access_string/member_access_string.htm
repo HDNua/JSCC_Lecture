@@ -1,0 +1,43 @@
+<html>
+  <head>
+    <script>
+      
+      function main() {
+        // 객체를 생성합니다.
+        var person = { myName: 'HDNua', myAge: 24 };
+        
+        // 문자열을 사용하여 객체의 멤버에 접근하고 값을 설정할 수 있다.
+        var name = person['myName'];
+        Log(name);
+        person['myAge'] = 28;
+        Log(person['myAge']);
+      }
+
+      /**
+      s가 가리키는 문자열을 HandyLogStream 요소에 출력합니다.
+      @param {String} s
+      */
+      function Log(s) {
+        var logObject = document.getElementById('HandyLogStream');
+        logObject.value += (s + '\n');
+      }
+      
+      /**
+      main 메서드를 호출하기 전에 환경을 준비합니다.
+      */
+      function init() {
+        var logObject = document.getElementById('HandyLogStream');
+        logObject.style.width = 800;
+        logObject.style.height = 200;
+      }
+      
+    </script>
+  </head>
+  <body>
+    <textarea id='HandyLogStream'></textarea>
+    <script>
+      init();
+      main();
+    </script>
+  </body>
+</html>

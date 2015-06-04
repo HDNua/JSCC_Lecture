@@ -1,0 +1,68 @@
+<html>
+  <head>
+    <script>
+      
+      /**
+      인자로 받은 수의 제곱을 반환합니다.
+      n: 분자(numerator), d: 분모(denominator)
+      
+      @param {number} n
+      @param {number} d
+      @return {number}
+      */
+      function div(n, d) {
+        // 분모가 0이라면 예외 처리합니다.
+        if (d == 0)
+          throw "Denominator is 0.";
+        return n / d;
+      }
+      
+      function main() {
+        // try-catch 구문을 이용한다.
+        try {
+          var numerator, denominator;
+          
+          // (10 / 20)의 결과를 출력합니다.
+          numerator = 10;
+          denominator = 20;
+          Log(div(numerator, denominator));
+
+          // (10 / 0)의 결과를 출력합니다.
+          numerator = 10;
+          denominator = 0;
+          Log(div(numerator, denominator));
+          
+          Log("Program ended");
+        } catch (ex) {
+          Log('Exception occurred: ' + ex);
+        }
+      }
+
+      /**
+      s가 가리키는 문자열을 HandyLogStream 요소에 출력합니다.
+      @param {String} s
+      */
+      function Log(s) {
+        var logObject = document.getElementById('HandyLogStream');
+        logObject.value += (s + '\n');
+      }
+      
+      /**
+      main 메서드를 호출하기 전에 환경을 준비합니다.
+      */
+      function init() {
+        var logObject = document.getElementById('HandyLogStream');
+        logObject.style.width = 800;
+        logObject.style.height = 200;
+      }
+      
+    </script>
+  </head>
+  <body>
+    <textarea id='HandyLogStream'></textarea>
+    <script>
+      init();
+      main();
+    </script>
+  </body>
+</html>

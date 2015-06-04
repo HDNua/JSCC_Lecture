@@ -1,0 +1,52 @@
+<html>
+  <head>
+    <script>
+      
+      function Person(name, age) {
+        this.myName = name;
+        this.myAge = age;
+        
+        // 자신의 정보를 문자열로 반환하는 myInfo 메서드를 정의합니다.
+        this.myInfo = function() {
+          // return 'Person: <name>, <age>'
+          return 'Person: ' + this.myName + ', ' + this.myAge;
+        };
+      }
+      
+      function main() {
+        // new 키워드와 생성자를 이용하여 Person 객체를 생성합니다.
+        var person = new Person("Handy", 20);
+        
+        // person 객체의 myInfo 메서드를 호출하고 값을 infoString에 저장합니다.
+        var infoString = person.myInfo();
+        Log(infoString);
+      }
+
+      /**
+      s가 가리키는 문자열을 HandyLogStream 요소에 출력합니다.
+      @param {String} s
+      */
+      function Log(s) {
+        var logObject = document.getElementById('HandyLogStream');
+        logObject.value += (s + '\n');
+      }
+      
+      /**
+      main 메서드를 호출하기 전에 환경을 준비합니다.
+      */
+      function init() {
+        var logObject = document.getElementById('HandyLogStream');
+        logObject.style.width = 800;
+        logObject.style.height = 200;
+      }
+      
+    </script>
+  </head>
+  <body>
+    <textarea id='HandyLogStream'></textarea>
+    <script>
+      init();
+      main();
+    </script>
+  </body>
+</html>

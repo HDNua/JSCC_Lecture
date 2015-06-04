@@ -1,0 +1,39 @@
+<html>
+  <head>
+    <script>
+
+      /**
+      프로그램의 주 진입점입니다.
+      */
+      function main() {
+        Log("Hello, world!");
+      }
+
+      /**
+      s가 가리키는 문자열을 HandyLogStream 요소에 출력합니다.
+      @param {String} s
+      */
+      function Log(s) {
+        var logObject = document.getElementById('HandyLogStream');
+        logObject.value += (s + '\n');
+      }
+      
+      /**
+      main 메서드를 호출하기 전에 환경을 준비합니다.
+      */
+      function init() {
+        var logObject = document.getElementById('HandyLogStream');
+        logObject.style.width = 800;
+        logObject.style.height = 200;
+      }
+      
+    </script>
+  </head>
+  <body>
+    <textarea id='HandyLogStream'></textarea>
+    <script>
+      init();
+      main();
+    </script>
+  </body>
+</html>

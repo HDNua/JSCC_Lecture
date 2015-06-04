@@ -1,0 +1,21 @@
+<html>
+  <body>
+    <textarea id='mytextarea'></textarea>
+    <script>
+      
+      var myElem = document.getElementById('mytextarea');
+      myElem.style.width = 800;
+      myElem.style.height = 200;
+      
+      // 화면에 s가 가리키는 문자열을 출력하는 Log 함수를 정의합니다.
+      function Log(s) {
+        var myElem = document.getElementById('mytextarea');
+        myElem.value += (s + '\n'); // 자동으로 개행이 되게 만듭니다.
+      }
+      
+      Log("Hello, world!");
+      Log("Nice to meet you!");
+      
+    </script>
+  </body>
+</html>

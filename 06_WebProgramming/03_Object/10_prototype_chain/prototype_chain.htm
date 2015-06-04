@@ -1,0 +1,69 @@
+<html>
+  <head>
+    <script>
+      
+      function Person(name, age, greeting) {
+        this.myName = name;
+        this.myAge = age;
+        
+        // 사람마다 인사하는 방법이 다르다고 하자.
+        this.greeting = greeting;
+      }
+      // 사람을 표현하는 방법은 모두 같다.
+      Person.prototype.myInfo = function() {
+        return 'Person: ' + this.myName + ', ' + this.myAge;
+      };
+      
+      function main() {
+        var person = new Person("kid", 10, function() { Log("I'm a boy!"); });
+        
+        // 1.1) person 객체의 greeting 멤버를 찾습니다.
+        // 1.2) greeting 멤버가 있으므로 이를 호출합니다.
+        person.greeting();
+        
+        // 2.1) person 객체에서 myInfo 멤버를 찾습니다.
+        // 2.2) person.prototype 객체로 이동하여 myInfo 멤버를 찾습니다.
+        // 2.3) myInfo 멤버가 있으므로 이를 호출합니다.
+        Log(person.myInfo());
+        
+        // 3.1) person 객체에서 toString 멤버를 찾습니다.
+        // 3.2) person.prototype 객체로 이동하여 toString 멤버를 찾습니다.
+        // 3.3) Object.prototype 객체로 이동하여 toString 멤버를 찾습니다.
+        // 3.4) toString 멤버가 있으므로 이를 호출합니다.
+        Log(person.toString());
+        
+        // 3.1) person 객체에서 wrong 멤버를 찾습니다.
+        // 3.2) person.prototype 객체로 이동하여 wrong 멤버를 찾습니다.
+        // 3.3) Object.prototype 객체로 이동하여 wrong 멤버를 찾습니다.
+        // 3.4) wrong 멤버가 없으므로 undefined를 반환합니다.
+        Log(person.wrong);
+      }
+
+      /**
+      s가 가리키는 문자열을 HandyLogStream 요소에 출력합니다.
+      @param {String} s
+      */
+      function Log(s) {
+        var logObject = document.getElementById('HandyLogStream');
+        logObject.value += (s + '\n');
+      }
+      
+      /**
+      main 메서드를 호출하기 전에 환경을 준비합니다.
+      */
+      function init() {
+        var logObject = document.getElementById('HandyLogStream');
+        logObject.style.width = 800;
+        logObject.style.height = 200;
+      }
+      
+    </script>
+  </head>
+  <body>
+    <textarea id='HandyLogStream'></textarea>
+    <script>
+      init();
+      main();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,48 @@
+<html>
+  <head>
+    <script>
+      
+      // Person 객체를 만들기 위한 생성자를 정의합니다.
+      function Person(name, age) {
+        // this 키워드를 이용하여 필드를 초기화합니다.
+        this.myName = name;
+        this.myAge = age;
+      }
+      
+      function main() {
+        // new 키워드와 생성자를 이용하여 Person 객체를 생성합니다.
+        var person = new Person("Handy", 20);
+        
+        // person 객체의 필드를 가져와 출력합니다.
+        Log(person.myName);
+        Log(person.myAge);
+      }
+
+      /**
+      s가 가리키는 문자열을 HandyLogStream 요소에 출력합니다.
+      @param {String} s
+      */
+      function Log(s) {
+        var logObject = document.getElementById('HandyLogStream');
+        logObject.value += (s + '\n');
+      }
+      
+      /**
+      main 메서드를 호출하기 전에 환경을 준비합니다.
+      */
+      function init() {
+        var logObject = document.getElementById('HandyLogStream');
+        logObject.style.width = 800;
+        logObject.style.height = 200;
+      }
+      
+    </script>
+  </head>
+  <body>
+    <textarea id='HandyLogStream'></textarea>
+    <script>
+      init();
+      main();
+    </script>
+  </body>
+</html>
