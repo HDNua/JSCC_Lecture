@@ -1,0 +1,91 @@
+<html>
+  <head>
+
+    <!-- Handy 프로젝트의 시작점입니다. -->
+    <script src="handy.js"></script>
+
+    <!-- 공용 모듈 목록입니다. -->
+    <script src="StringBuffer.js"></script>
+    <script src="common.js"></script>
+    
+    <script>
+      
+      function Parent() {
+        this.value = 10;
+      }
+      Parent.prototype.show = function() {
+        for (key in this) {
+          log('Parent [' + key + ']');
+        }
+        log('Parent.value = [' + this.value + ']');
+      }
+      function Child() {
+        
+      }
+      Child.prototype = new Parent();
+      Child.prototype.show = function() {
+        for (key in this) {
+          log('Child [' + key + ']');
+        }
+        log('Child.value = [' + this.value + ']');
+      }
+      
+      // 프로토타입을 확인하는 예제입니다.
+      function main() {
+        
+        var o = new Child();
+        o.value = 20;
+        
+        var p = Object.getPrototypeOf(o);
+        p.show();
+        
+        p = Object.getPrototypeOf(p);
+        p.show();
+        
+        
+        /*
+        var ex = new StringBufferException('test', null);
+        
+        // ex 객체의 프로토타입을 획득합니다.
+        var p = Object.getPrototypeOf(ex);
+        
+        // 획득한 프로토타입 객체를 출력합니다.
+        log(p);
+        
+        // 과정을 반복합니다.
+        p = Object.getPrototypeOf(p);
+        log(p);
+        p = Object.getPrototypeOf(p);
+        log(p);
+        p = Object.getPrototypeOf(p);
+        log(p);
+        log('complete');
+        
+        */
+        
+      }
+      function init() {
+        var logStream = document.getElementById('HandyLogStream');
+        logStream.style.width = '100%';
+        logStream.style.height = '100%';
+      }
+    </script>
+    
+  </head>
+  <body>
+    <textarea id='HandyLogStream'></textarea>
+    <script>
+      try {
+        init();
+        main();
+      } catch (ex) {
+        if (ex instanceof Exception) {
+          log(ex);
+        } else {
+          // Exception 예외 객체가 아니라면 여기서 처리하지 않습니다.
+          throw ex;
+        }
+      }
+    </script>
+  </body>
+</html>

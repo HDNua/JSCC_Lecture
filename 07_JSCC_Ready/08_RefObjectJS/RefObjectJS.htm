@@ -1,0 +1,53 @@
+<html>
+  <head>
+
+    <!-- Handy 프로젝트의 시작점입니다. -->
+    <script src="handy.js"></script>
+    
+    <script>
+      // Object 형식을 정의합니다.
+      function MyObject(value) { this.value = value; }
+      
+      // 값을 변경하는 함수를 정의합니다.
+      function changeValue(o, value) {
+        // o는 object의 사본이 아닌 object에 대한 참조처럼 행동합니다.
+        o.value = value;
+      }
+      
+      function main() {
+        var object = new MyObject();
+        
+        // object를 초기화하고 값을 출력합니다.
+        object.value = 10;
+        log(object.value);
+        
+        // 값을 변경하고 출력합니다.
+        changeValue(object, 20);
+        log(object.value);
+      }
+      
+      function init() {
+        var logStream = document.getElementById('HandyLogStream');
+        logStream.style.width = 800;
+        logStream.style.height = 200;
+      }
+    </script>
+    
+  </head>
+  <body>
+    <textarea id='HandyLogStream'></textarea>
+    <script>
+      try {
+        init();
+        main();
+      } catch (ex) {
+        if (ex instanceof Exception) {
+          log(ex);
+        } else {
+          // Exception 예외 객체가 아니라면 여기서 처리하지 않습니다.
+          throw ex;
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,58 @@
+<html>
+  <head>
+
+    <!-- Handy 프로젝트의 시작점입니다. -->
+    <script src="handy.js"></script>
+
+    <script>
+      // HandyFileSystem demonstration
+      function main() {
+
+        // HandyFileSystem 객체를 가리키는 변수입니다.
+        var hfs = HandyFileSystem;
+
+        // 파일에 문장을 기록하는 예제입니다.
+        var filename = 'handymakesman.txt';
+        var text = prompt('Enter text to write', 'hello, world!');
+        if (hfs.save(filename, text) == false) {
+          log('failed');
+        }
+        else {
+          log('complete');
+        }
+
+        // 파일에 기록된 텍스트를 불러오는 예제입니다.
+        var text = hfs.load(filename);
+        if (text) {
+          log('succeed: ' + text);
+        }
+        else {
+          log('failed to load');
+        }
+      }
+      function init() {
+        var logStream = document.getElementById('HandyLogStream');
+        logStream.style.width = '100%';
+        logStream.style.height = '100%';
+        initHandyFileSystem();
+      }
+    </script>
+    
+  </head>
+  <body>
+    <textarea id='HandyLogStream'></textarea>
+    <script>
+      try {
+        init();
+        main();
+      } catch (ex) {
+        if (ex instanceof Exception) {
+          log(ex);
+        } else {
+          // Exception 예외 객체가 아니라면 여기서 처리하지 않습니다.
+          throw ex;
+        }
+      }
+    </script>
+  </body>
+</html>

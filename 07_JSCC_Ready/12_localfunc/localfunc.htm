@@ -1,0 +1,52 @@
+<html>
+  <head>
+
+    <!-- Handy 프로젝트의 시작점입니다. -->
+    <script src="handy.js"></script>
+    
+    <script>
+      
+      // 전역 함수 gfunc를 정의합니다.
+      function gfunc() {
+        
+        // 지역적인 함수 lfunc를 정의합니다.
+        function lfunc() {
+          alert('hello, world!');
+        }
+        
+        // lfunc의 내용이 잘 출력됩니다.
+        log(lfunc);
+        
+        // lfunc가 전역에 정의되지 않았으므로 undefined가 출력됩니다.
+        log(window.lfunc);
+      }
+      
+      function main() {
+        gfunc();
+      }
+      
+      function init() {
+        var logStream = document.getElementById('HandyLogStream');
+        logStream.style.width = 800;
+        logStream.style.height = 200;
+      }
+    </script>
+    
+  </head>
+  <body>
+    <textarea id='HandyLogStream'></textarea>
+    <script>
+      try {
+        init();
+        main();
+      } catch (ex) {
+        if (ex instanceof Exception) {
+          log(ex);
+        } else {
+          // Exception 예외 객체가 아니라면 여기서 처리하지 않습니다.
+          throw ex;
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,42 @@
+<html>
+  <body>
+    <script>
+      
+      /**
+      jscc 일반 예외 형식 Exception을 정의합니다.
+      @param {string} msg
+      */
+      function Exception(msg) {
+        // 예외에 대한 설명을 보관하는 문자열입니다.
+        this.message = msg;
+        // 다른 멤버와 중복되지 않을 필드를 만들고 적당히 설정합니다.
+        this.handy = true;
+      }
+      
+      // 0으로 나누려고 시도하면 예외를 반환하는 예제입니다.
+      try {
+        
+        var n = 10, d = 0;
+        
+        // d = 5; // 주석을 해제해보세요!
+        if (d == 0) { // 0으로 나누려고 하면 예외를 발생합니다.
+          throw new Exception("Tried to divide number with 0");
+        }
+        alert(n / d); // 0으로 나눈 결과를 출력합니다.
+        
+        // 일반 예외 형식인 Error 객체를 발생합니다.
+        test;
+        
+      } catch (ex) {
+        // handy 필드가 정의되지 않았다면 Exception 객체가 아닙니다.
+        if (ex['handy'] == undefined) {
+          alert('Catched object is not instance of Exception');
+        }
+        // 그 외의 경우 Exception 객체로 간주하고 처리합니다.
+        else {
+          alert(ex.message);
+        }
+      }
+    </script>
+  </body>
+</html>

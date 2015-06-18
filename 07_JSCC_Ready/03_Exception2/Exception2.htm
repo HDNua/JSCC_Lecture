@@ -1,0 +1,35 @@
+<html>
+  <body>
+    <script>
+      
+      function Exception(msg) {
+        this.message = msg;
+      }
+      
+      try {
+
+        var n = 10, d = 0;
+        
+        // d = 5; // 주석을 해제해보세요!
+        if (d == 0) { // 0으로 나누려고 하면 예외를 발생합니다.
+          throw new Exception("Tried to divide number with 0");
+        }
+        alert(n / d); // 0으로 나눈 결과를 출력합니다.
+        
+        // 일반 예외 형식인 Error 객체를 발생합니다.
+        test;
+        
+      } catch (ex) {
+        // ex가 Exception의 인스턴스인 경우의 처리입니다.
+        if (ex instanceof Exception) {
+          alert(ex.message);
+        }
+        // 그 외의 경우에 대한 처리입니다.
+        else {
+          alert('Catched object is not instance of Exception');
+        }
+      }
+      
+    </script>
+  </body>
+</html>

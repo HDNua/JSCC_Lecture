@@ -1,0 +1,36 @@
+<html>
+  <head>
+    
+    <!-- 기존 코드를 가져올 때 src 속성을 이용합니다. -->
+    <script src="handy.js"></script>
+    
+    <!-- 필요한 코드를 새롭게 추가합니다. -->
+    <script>
+      function main() {
+        log("Hello, world!");
+      }
+      function init() {
+        var logStream = document.getElementById('HandyLogStream');
+        logStream.style.width = 800;
+        logStream.style.height = 200;
+      }
+    </script>
+    
+  </head>
+  <body>
+    <textarea id='HandyLogStream'></textarea>
+    <script>
+      try {
+        init();
+        main();
+      } catch (ex) {
+        if (ex instanceof Exception) {
+          log(ex);
+        } else {
+          // Exception 예외 객체가 아니라면 여기서 처리하지 않습니다.
+          throw ex;
+        }
+      }
+    </script>
+  </body>
+</html>

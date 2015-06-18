@@ -1,0 +1,45 @@
+<html>
+  <head>
+
+    <!-- Handy 프로젝트의 시작점입니다. -->
+    <script src="handy.js"></script>
+    
+    <script>
+      
+      // 메서드의 인자를 출력합니다.
+      function func(param1, param2, param3) {
+        log(param1);
+        log(param2);
+        log(param3);
+      }
+      function main() {
+        // func의 인자를 두 개만 넘긴다고 해도 적법한 문장입니다.
+        func(1, 'test');
+        
+      }
+      
+      function init() {
+        var logStream = document.getElementById('HandyLogStream');
+        logStream.style.width = 800;
+        logStream.style.height = 200;
+      }
+    </script>
+    
+  </head>
+  <body>
+    <textarea id='HandyLogStream'></textarea>
+    <script>
+      try {
+        init();
+        main();
+      } catch (ex) {
+        if (ex instanceof Exception) {
+          log(ex);
+        } else {
+          // Exception 예외 객체가 아니라면 여기서 처리하지 않습니다.
+          throw ex;
+        }
+      }
+    </script>
+  </body>
+</html>

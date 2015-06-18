@@ -1,0 +1,45 @@
+<html>
+  <head>
+
+    <!-- Handy 프로젝트의 시작점입니다. -->
+    <script src="handy.js"></script>
+
+    <!-- 공용 모듈 목록입니다. -->
+    <script src="StringBuffer.js"></script>
+    <script src="common.js"></script>
+    
+    <script>
+      // 토큰을 제대로 분석하는지 확인하는 예제입니다.
+      function main() {
+        var buffer = new StringBuffer("test + 1234 + num1 * num2");
+        while (buffer.is_empty() == false) {
+          var token = buffer.get_token();
+          log(token);
+        }
+        
+      }
+      function init() {
+        var logStream = document.getElementById('HandyLogStream');
+        logStream.style.width = '100%';
+        logStream.style.height = '100%';
+      }
+    </script>
+    
+  </head>
+  <body>
+    <textarea id='HandyLogStream'></textarea>
+    <script>
+      try {
+        init();
+        main();
+      } catch (ex) {
+        if (ex instanceof Exception) {
+          log(ex);
+        } else {
+          // Exception 예외 객체가 아니라면 여기서 처리하지 않습니다.
+          throw ex;
+        }
+      }
+    </script>
+  </body>
+</html>
