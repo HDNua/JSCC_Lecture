@@ -1,0 +1,77 @@
+<html>
+  <head>
+
+    <!-- Handy 프로젝트의 시작점입니다. -->
+    <script src="handy.js"></script>
+
+    <!-- 공용 모듈 목록입니다. -->
+    <script src="common.js"></script>
+    <script src="StringBuffer.js"></script>
+    
+    <!-- 컴파일러를 위한 모듈 목록입니다. -->
+    <script src="Memory.js"></script>
+    <script src="Register.js"></script>
+    <script src="Runner.js"></script>
+    
+    <script>
+      
+      // Memory 테스트 예제입니다.
+      function main() {
+        try {
+          
+          // run 이전 고려사항:
+          // 1. Runner가 프로그램을 실행합니다.
+          // 2. Memory 모듈의 bytePtr는 0으로 초기화되어있었습니다.
+          // 3. ebp, esp는 Memory.MAX_MEMORY_SIZ였습니다.
+          Runner.run('HelloHASM.hda');
+          
+          // run 이후 고려사항:
+          // 1. push만 작성했으므로 push만 메모리에 반영되어있습니다.
+          // 2. ebp는 변하지 않았습니다.
+          // 3. esp는 4만큼 줄었습니다.
+          // 4. esp가 가리키는 위치의 메모리는 ebp의 값과 같습니다.
+          var dword = Memory.get_dword(Register.esp);
+          log(dword);
+          
+        } catch (ex) {
+          if (ex instanceof RunnerException) {
+            // RunnerException에 대한 처리를 작성합니다.
+            log('Runner module throws an error');
+            log(ex);
+          }
+          else {
+            // RunnerException이 아니라면 여기서 처리하지 않습니다.
+            throw ex;
+          }
+        }
+      }
+      function init() {
+        var logStream = document.getElementById('HandyLogStream');
+        logStream.style.width = '100%';
+        logStream.style.height = '100%';
+        initHandyFileSystem();
+        
+        initMemory();
+        initRegister();
+        initRunner();
+      }
+    </script>
+    
+  </head>
+  <body>
+    <textarea id='HandyLogStream'></textarea>
+    <script>
+      try {
+        init();
+        main();
+      } catch (ex) {
+        if (ex instanceof Exception) {
+          log(ex);
+        } else {
+          // Exception 예외 객체가 아니라면 여기서 처리하지 않습니다.
+          throw ex;
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,65 @@
+<html>
+  <head>
+
+    <!-- Handy 프로젝트의 시작점입니다. -->
+    <script src="handy.js"></script>
+
+    <!-- 공용 모듈 목록입니다. -->
+    <script src="common.js"></script>
+    <script src="StringBuffer.js"></script>
+    
+    <!-- 컴파일러를 위한 모듈 목록입니다. -->
+    <script src="Memory.js"></script>
+    <script src="Register.js"></script>
+    <script src="Runner.js"></script>
+    
+    <script>
+      
+      // Memory 테스트 예제입니다.
+      function main() {
+        try {
+          
+          Memory.show();
+          
+        } catch (ex) {
+          if (ex instanceof MemoryException) {
+            // MemoryException에 대한 처리를 작성합니다.
+            log('Memory module throws an error');
+            log(ex);
+          }
+          else {
+            // RunnerException이 아니라면 여기서 처리하지 않습니다.
+            throw ex;
+          }
+        }
+      }
+      function init() {
+        var logStream = document.getElementById('HandyLogStream');
+        logStream.style.width = '100%';
+        logStream.style.height = '100%';
+        initHandyFileSystem();
+        
+        initMemory();
+        initRegister();
+        initRunner();
+      }
+    </script>
+    
+  </head>
+  <body>
+    <textarea id='HandyLogStream'></textarea>
+    <script>
+      try {
+        init();
+        main();
+      } catch (ex) {
+        if (ex instanceof Exception) {
+          log(ex);
+        } else {
+          // Exception 예외 객체가 아니라면 여기서 처리하지 않습니다.
+          throw ex;
+        }
+      }
+    </script>
+  </body>
+</html>

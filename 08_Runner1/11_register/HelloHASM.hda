@@ -1,0 +1,15 @@
+; 데이터 세그먼트의 시작을 나타냅니다.
+; nasm과 다르게 segment 지시어를 기록하지 않습니다.
+.data
+
+; 코드 세그먼트의 시작을 나타냅니다.
+.code
+_main:
+push ebp
+mov ebp, esp
+
+; put your code here
+
+mov esp, ebp
+pop ebp
+ret

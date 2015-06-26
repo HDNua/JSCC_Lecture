@@ -1,0 +1,80 @@
+<html>
+  <head>
+
+    <!-- Handy 프로젝트의 시작점입니다. -->
+    <script src="handy.js"></script>
+
+    <!-- 공용 모듈 목록입니다. -->
+    <script src="common.js"></script>
+    <script src="StringBuffer.js"></script>
+    
+    <!-- 컴파일러를 위한 모듈 목록입니다. -->
+    <script src="Memory.js"></script>
+    <script src="Runner.js"></script>
+    
+    <script>
+      
+      // Memory 테스트 예제입니다.
+      function main() {
+        try {
+          var value;
+          Memory.bytePtr = 4; // bytePtr를 초기화합니다.
+          
+          // 메모리에 값을 기록합니다.
+          Memory.write_byte(10); Memory.write_byte(20);
+          
+          Memory.bytePtr = 4; // bytePtr를 다시 초기화합니다.
+          
+          // 메모리에서 값을 가져옵니다.
+          value = Memory.read_byte(); log(value);
+          value = Memory.read_byte(); log(value);
+          
+          // 메모리에서 주소를 이용하여 직접 값을 가져옵니다.
+          value = Memory.get_byte(4); log(value);
+          
+          // 현재 바이트 포인터가 가리키는 위치에 값을 기록합니다.
+          Memory.set_byte(30, Memory.bytePtr);
+          
+          // 바이트 포인터가 가리키는 값을 읽습니다.
+          value = Memory.read_byte(); log(value);
+        } catch (ex) {
+          if (ex instanceof MemoryException) {
+            // MemoryException에 대한 처리를 작성합니다.
+            log('Memory module throws an error');
+            log(ex);
+          }
+          else {
+            // MemoryException이 아니라면 여기서 처리하지 않습니다.
+            throw ex;
+          }
+        }
+      }
+      function init() {
+        var logStream = document.getElementById('HandyLogStream');
+        logStream.style.width = '100%';
+        logStream.style.height = '100%';
+        initHandyFileSystem();
+        
+        initMemory();
+        initRunner();
+      }
+    </script>
+    
+  </head>
+  <body>
+    <textarea id='HandyLogStream'></textarea>
+    <script>
+      try {
+        init();
+        main();
+      } catch (ex) {
+        if (ex instanceof Exception) {
+          log(ex);
+        } else {
+          // Exception 예외 객체가 아니라면 여기서 처리하지 않습니다.
+          throw ex;
+        }
+      }
+    </script>
+  </body>
+</html>

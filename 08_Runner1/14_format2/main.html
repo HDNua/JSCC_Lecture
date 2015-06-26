@@ -1,0 +1,104 @@
+<html>
+  <head>
+
+    <!-- Handy 프로젝트의 시작점입니다. -->
+    <script src="handy.js"></script>
+
+    <!-- 공용 모듈 목록입니다. -->
+    <script src="common.js"></script>
+    <script src="StringBuffer.js"></script>
+    
+    <script>
+      
+      /**
+      형식화된 문자열을 반환합니다.
+      @param {string} fmt
+      @return {string}
+      */
+      function format(fmt) {
+        // 반환할 문자열입니다.
+        var result = '';
+        var params = format.arguments; // format 인수 목록입니다.
+        
+        // fmt의 모든 문자에 대해 반복문을 구성합니다.
+        // pi는 인자의 인덱스를 의미합니다.
+        // 0번 인덱스는 fmt이므로 그 다음 인자부터 고려합니다.
+        for (var i=0, pi=1, len=fmt.length; i<len; ++i) {
+          
+          // i번째 문자를 획득합니다.
+          var c = fmt.charAt(i);
+          
+          // 퍼센트 기호라면 특별하게 처리합니다.
+          if (c == '%') {
+            
+            // i번째 문자는 이미 해석했으므로 i를 한 칸 옮깁니다.
+            ++i;
+            
+            // % 기호 다음의 문자를 가져옵니다.
+            var nextChar = fmt.charAt(i);
+            
+            // 가져온 문자를 기준으로 조건 분기합니다.
+            var value;
+            switch (nextChar) {
+              case 'd': // 정수를 출력합니다.
+                
+                // pi번째 인수를 획득합니다.
+                value = params[pi];
+                
+                // 인덱스 번호를 증가시킵니다.
+                ++pi;
+                
+                break;
+              case 's': // 문자열을 출력합니다.
+                
+                // 한 문장으로 합친 것입니다.
+                value = params[pi++];
+                
+                break;
+                
+              case '%': // 퍼센트를 출력합니다.
+                value = '%';
+                break;
+            }
+            
+            // 해석한 문자열을 붙입니다.
+            result += value;
+          }
+          // 퍼센트 기호가 아니라면 그냥 붙입니다.
+          else { 
+            result += c;
+          }
+        }
+        // 문자열을 반환합니다.
+        return result;
+      }
+      
+      // format 테스트 예제입니다.
+      function main() {
+        log(format('hello, %s, %d and %%!', 'test', 10));
+      }
+      function init() {
+        var logStream = document.getElementById('HandyLogStream');
+        logStream.style.width = '100%';
+        logStream.style.height = '100%';
+      }
+    </script>
+    
+  </head>
+  <body>
+    <textarea id='HandyLogStream'></textarea>
+    <script>
+      try {
+        init();
+        main();
+      } catch (ex) {
+        if (ex instanceof Exception) {
+          log(ex);
+        } else {
+          // Exception 예외 객체가 아니라면 여기서 처리하지 않습니다.
+          throw ex;
+        }
+      }
+    </script>
+  </body>
+</html>

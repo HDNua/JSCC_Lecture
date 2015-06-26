@@ -1,0 +1,164 @@
+<html>
+  <head>
+
+    <!-- Handy 프로젝트의 시작점입니다. -->
+    <script src="handy.js"></script>
+
+    <!-- 공용 모듈 목록입니다. -->
+    <script src="common.js"></script>
+    <script src="StringBuffer.js"></script>
+    
+    <script>
+      
+      /**
+      형식화된 문자열을 반환합니다.
+      @param {string} fmt
+      @return {string}
+      */
+      function format(fmt) {
+        var value;
+        var result = ''; // 반환할 문자열입니다.
+        var params = format.arguments; // format 인수 목록입니다.
+        
+        // fmt의 모든 문자에 대해 반복문을 구성합니다.
+        // pi는 인자의 인덱스를 의미합니다.
+        // 0번 인덱스는 fmt이므로 그 다음 인자부터 고려합니다.
+        var i, pi, len;
+        for (i=0, pi=1, len=fmt.length; i<len; ++i) {
+          var c = fmt.charAt(i); // i번째 문자를 획득합니다.
+          
+          if (c == '%') { // 퍼센트 기호라면 특별하게 처리합니다.
+            // % 기호 다음의 문자를 가져옵니다.
+            var nextChar = fmt.charAt(++i);
+            
+            // 옵션을 먼저 획득합니다.
+            var showLeft = false; // 기본적으로 오른쪽 정렬합니다.
+            var fillZero = false; // 기본적으로 여백을 공백으로 채웁니다.
+            switch (nextChar) {
+              case '0': // 이 옵션이 적용되면 여백을 0으로 채웁니다.
+                fillZero = true;
+                // 다음 문자를 다시 얻습니다.
+                nextChar = fmt.charAt(++i);
+                break;
+              case '-': // 이 옵션이 적용되면 왼쪽 정렬합니다.
+                showLeft = true;
+                // 다음 문자를 다시 얻습니다.
+                nextChar = fmt.charAt(++i);
+                break;
+            }
+            
+            // 여백의 크기를 획득합니다.
+            // nextChar가 숫자인 동안 크기를 획득합니다.
+            var width = 0;
+            while ('0123456789'.indexOf(nextChar) >= 0) {
+              // 길이를 획득합니다. get_number 구현을 참조하십시오.
+              width = width * 10 + (nextChar - '0');
+              // 다음 문자를 다시 얻습니다.
+              nextChar = fmt.charAt(++i);
+            }
+            
+            // 가져온 문자를 기준으로 조건 분기합니다.
+            switch (nextChar) {
+              case 'b': // 2진수를 출력합니다.
+                value = params[pi++].toString(2);
+                break;
+              case 'x': // 16진수를 출력합니다.
+                value = params[pi++].toString(16);
+                break;
+              case 'd': // 정수를 출력합니다.
+                value = params[pi++].toString();
+                break;
+              case 's': // 문자열을 출력합니다.
+                value = params[pi++];
+                break;
+              case 'c': // 문자 코드에 해당하는 문자를 출력합니다.
+                var param = params[pi++];
+                // 문자열이라면 첫 번째 글자만 획득합니다.
+                if (typeof(param) == 'string') {
+                  value = param.charAt(0);
+                }
+                else { // 그 외의 경우 정수로 간주합니다.
+                  value = String.fromCharCode(param);
+                }
+                break;
+              case '%': // 퍼센트를 출력합니다.
+                value = '%';
+                break;
+            }
+            
+            // 정상적으로 값을 획득하지 못한 경우 undefined를 출력합니다.
+            if (value == undefined) {
+              value = 'undefined';
+            }
+            
+            // 옵션을 문자열에 반영합니다.
+            if (showLeft) { // 왼쪽 정렬 옵션입니다.
+              var space = ''; // 여백 문자열입니다.
+              // 주어진 크기만큼 여백을 확보합니다.
+              for (var si=0, slen=width - value.length; si<slen; ++si)
+                space += ' ';
+              // 옵션을 반영합니다.
+              value = value + space;
+            }
+            else if (fillZero) { // 공백을 0으로 채우는 옵션입니다.
+              var space = ''; // 여백 문자열입니다.
+              // 주어진 크기만큼 여백을 확보합니다.
+              for (var si=0, slen=width - value.length; si<slen; ++si)
+                space += '0';
+              // 옵션을 반영합니다.
+              value = space + value;
+            }
+            else if (width > 0) { // 두 옵션 없이 크기만 주어진 경우입니다.
+              var space = ''; // 여백 문자열입니다.
+              // 주어진 크기만큼 여백을 확보합니다.
+              for (var si=0, slen=width - value.length; si<slen; ++si)
+                space += ' ';
+              // 옵션을 반영합니다.
+              value = space + value;
+            }
+            
+            // 해석한 문자열을 붙입니다.
+            result += value;
+          }
+          // 퍼센트 기호가 아니라면 그냥 붙입니다.
+          else { 
+            result += c;
+          }
+        }
+        
+        // 문자열을 반환합니다.
+        return result;
+      }
+      
+      // format 테스트 예제입니다.
+      function main() {
+        log(format('      ----- score -----'));
+        log(format('%-5x|%5s|%5s|%5c', 1, 'A', 'B', 67));
+        log(format('%-5d|%5b|%5d|%5x', 2, 5, 5, 5));
+        log(format('%-5d|%05b|%05d|%05x', 4, 5, 5, 5));
+      }
+      function init() {
+        var logStream = document.getElementById('HandyLogStream');
+        logStream.style.width = '100%';
+        logStream.style.height = '100%';
+      }
+    </script>
+    
+  </head>
+  <body>
+    <textarea id='HandyLogStream'></textarea>
+    <script>
+      init();
+      main();
+      try {
+      } catch (ex) {
+        if (ex instanceof Exception) {
+          log(ex);
+        } else {
+          // Exception 예외 객체가 아니라면 여기서 처리하지 않습니다.
+          throw ex;
+        }
+      }
+    </script>
+  </body>
+</html>

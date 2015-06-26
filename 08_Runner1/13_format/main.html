@@ -1,0 +1,69 @@
+<html>
+  <head>
+
+    <!-- Handy 프로젝트의 시작점입니다. -->
+    <script src="handy.js"></script>
+
+    <!-- 공용 모듈 목록입니다. -->
+    <script src="common.js"></script>
+    <script src="StringBuffer.js"></script>
+    
+    <script>
+      
+      /**
+      형식화된 문자열을 반환합니다.
+      @param {string} fmt
+      @return {string}
+      */
+      function format(fmt) {
+        // 반환할 문자열입니다.
+        var result = '';
+        
+        // fmt의 모든 문자에 대해 반복문을 구성합니다.
+        for (var i=0, len=fmt.length; i<len; ++i) {
+          
+          // i번째 문자를 획득합니다.
+          var c = fmt.charAt(i);
+          
+          // 퍼센트 기호라면 특별하게 처리합니다.
+          if (c == '%') { 
+            result += '<value>'; // 퍼센트 기호라면 '<value>' 문자열을 붙입니다.
+          }
+          // 퍼센트 기호가 아니라면 그냥 붙입니다.
+          else { 
+            result += c;
+          }
+        }
+        // 문자열을 반환합니다.
+        return result;
+      }
+      
+      // format 테스트 예제입니다.
+      function main() {
+        log(format('hello, %s!', 'test'));
+      }
+      function init() {
+        var logStream = document.getElementById('HandyLogStream');
+        logStream.style.width = '100%';
+        logStream.style.height = '100%';
+      }
+    </script>
+    
+  </head>
+  <body>
+    <textarea id='HandyLogStream'></textarea>
+    <script>
+      try {
+        init();
+        main();
+      } catch (ex) {
+        if (ex instanceof Exception) {
+          log(ex);
+        } else {
+          // Exception 예외 객체가 아니라면 여기서 처리하지 않습니다.
+          throw ex;
+        }
+      }
+    </script>
+  </body>
+</html>

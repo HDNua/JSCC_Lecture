@@ -1,0 +1,58 @@
+<html>
+  <head>
+
+    <!-- Handy 프로젝트의 시작점입니다. -->
+    <script src="handy.js"></script>
+
+    <!-- 공용 모듈 목록입니다. -->
+    <script src="common.js"></script>
+    <script src="StringBuffer.js"></script>
+    
+    <!-- 컴파일러를 위한 모듈 목록입니다. -->
+    <script src="Runner.js"></script>
+    
+    <script>
+      function main() {
+        try {
+          // 초기화한 Runner 모듈을 이용하여 코드를 실행합니다.
+          Runner.run('HelloHASM.hda');
+        } catch (ex) {
+          if (ex instanceof RunnerException) {
+            // RunnerException에 대한 처리를 작성합니다.
+            log('Runner module throws an error');
+            log(ex);
+          }
+          else {
+            // RunnerException이 아니라면 여기서 처리하지 않습니다.
+            throw ex;
+          }
+        }
+      }
+      function init() {
+        var logStream = document.getElementById('HandyLogStream');
+        logStream.style.width = '100%';
+        logStream.style.height = '100%';
+        initHandyFileSystem();
+        
+        initRunner();
+      }
+    </script>
+    
+  </head>
+  <body>
+    <textarea id='HandyLogStream'></textarea>
+    <script>
+      try {
+        init();
+        main();
+      } catch (ex) {
+        if (ex instanceof Exception) {
+          log(ex);
+        } else {
+          // Exception 예외 객체가 아니라면 여기서 처리하지 않습니다.
+          throw ex;
+        }
+      }
+    </script>
+  </body>
+</html>
