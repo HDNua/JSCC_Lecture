@@ -1,0 +1,30 @@
+.code
+_main:
+push ebp
+mov ebp, esp
+
+; eax = 5
+mov eax, 5
+
+; eax와 5를 비교하여 결과를 eflags에 저장합니다.
+cmp eax, 5
+
+; eflags의 z 플래그가 0이 아니면 _else로 점프합니다.
+jnz _else
+
+; ebx = 1
+mov ebx, 1
+
+; 조건문의 끝으로 이동합니다.
+jmp _endif
+
+_else:
+; ebx = 2
+mov ebx, 2
+
+; 조건문의 끝입니다.
+_endif:
+_end:
+mov esp, ebp
+pop ebp
+exit

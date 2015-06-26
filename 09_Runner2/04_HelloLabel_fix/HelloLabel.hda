@@ -1,0 +1,13 @@
+.code
+_main:
+push ebp
+mov ebp, esp
+
+mov eax, 3
+jmp _end
+mov eax, 5
+
+_end:
+mov esp, ebp
+pop ebp
+exit

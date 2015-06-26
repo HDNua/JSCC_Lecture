@@ -1,0 +1,15 @@
+.code
+_main:
+push ebp
+mov ebp, esp
+
+; 정수 10을 출력합니다.
+print_number 10
+
+; 문자 A(==65)를 출력합니다.
+print_letter 65
+
+_end:
+mov esp, ebp
+pop ebp
+exit

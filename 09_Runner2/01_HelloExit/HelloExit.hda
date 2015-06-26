@@ -1,0 +1,3 @@
+.code
+mov eax,0
+exit

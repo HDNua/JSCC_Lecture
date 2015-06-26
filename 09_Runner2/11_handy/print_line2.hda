@@ -1,0 +1,13 @@
+.code
+_main:
+push ebp
+mov ebp, esp
+
+handy print_number, 10
+handy print_letter, 65
+handy print_string, "Hello, world!\n"
+
+_end:
+mov esp, ebp
+pop ebp
+exit

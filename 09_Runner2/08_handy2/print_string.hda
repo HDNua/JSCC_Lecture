@@ -1,0 +1,11 @@
+.code
+_main:
+push ebp
+mov ebp, esp
+
+print_str "Hello, world!"
+
+_end:
+mov esp, ebp
+pop ebp
+exit

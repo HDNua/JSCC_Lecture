@@ -1,0 +1,34 @@
+.code
+;===========================
+; proc main
+;===========================
+_main:
+push ebp
+mov ebp, esp
+
+push 10
+push 20
+call _sum
+add esp, 8
+handy print_number, eax
+
+_end:
+mov esp, ebp
+pop ebp
+exit
+
+;===========================
+; proc sum
+; receives: 2 Integers
+; returns: eax which is
+;  sum of params
+;===========================
+_sum:
+push ebp
+mov ebp, esp
+mov edx, [ebp+0x8]
+mov eax, [ebp+0xc]
+add eax, edx
+mov esp, ebp
+pop ebp
+ret

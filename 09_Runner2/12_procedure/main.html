@@ -1,0 +1,90 @@
+<html>
+  <head>
+
+    <!-- Handy 프로젝트의 시작점입니다. -->
+    <script src="handy.js"></script>
+
+    <!-- 공용 모듈 목록입니다. -->
+    <script src="common.js"></script>
+    <script src="StringBuffer.js"></script>
+    
+    <!-- 컴파일러를 위한 모듈 목록입니다. -->
+    <script src="Stream.js"></script>
+    <script src="Memory.js"></script>
+    <script src="Register.js"></script>
+    <script src="Runner.js"></script>
+    <script src="Operate.js"></script>
+    
+    <script>
+      
+      // Memory 테스트 예제입니다.
+      function main() {
+        Runner.load('procedure.hda');
+        Runner.run();
+        Memory.show();
+      }
+      function init() {
+        initHandyFileSystem();
+        initStyle();
+        initStream();
+        
+        initMemory();
+        initRegister();
+        initRunner();
+        initOperate();
+      }
+      
+      function initStyle() {
+        var logStream = document.getElementById('HandyLogStream');
+        logStream.style.width = '100%';
+        logStream.style.height = '25%';
+        
+        var outStream = document.getElementById('outputStream');
+        outStream.style.width = '49%';
+        outStream.style.height = '34%';
+        
+        var memStream = document.getElementById('memoryStream');
+        memStream.style.width = '50%';
+        memStream.style.height = '34%';
+        
+        var regStream = document.getElementById('registerStream');
+        regStream.style.width = '49%';
+        regStream.style.height = '34%';
+        
+        var expStream = document.getElementById('expressionStream');
+        expStream.style.width = '50%';
+        expStream.style.height = '34%';
+      }
+    </script>
+    
+  </head>
+  <body>
+    <input id='inputFileName'>
+    <input type="button" value='Run' onclick='run()'>
+    <input type="button" value='Undo' onclick='undo()'>
+    <input type="button" value='Redo' onclick='redo()'><br>
+    <textarea id='outputStream'></textarea>
+    <textarea id='memoryStream'></textarea><br>
+    <textarea id='registerStream'></textarea>
+    <textarea id='expressionStream'></textarea><br>
+    <textarea id='HandyLogStream'></textarea>
+    <script>
+      initHandy();
+      init();
+      main();
+      
+      try {
+//        initHandy();
+//        init();
+//        main();
+      } catch (ex) {
+        if (ex instanceof Exception) {
+          log(ex);
+        } else {
+          // Exception 예외 객체가 아니라면 여기서 처리하지 않습니다.
+          throw ex;
+        }
+      }
+    </script>
+  </body>
+</html>
