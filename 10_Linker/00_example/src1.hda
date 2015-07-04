@@ -1,0 +1,7 @@
+.data
+_sHello db 'hello', 0
+
+.code
+_sayHello:
+handy puts, _sHello
+ret

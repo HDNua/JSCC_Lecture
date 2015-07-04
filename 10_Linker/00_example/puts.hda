@@ -1,0 +1,11 @@
+.code
+;===========================
+; proc puts
+;===========================
+_puts:
+push ebp
+mov ebp, esp
+handy puts, [ebp+0x8]
+mov esp, ebp
+pop ebp
+ret

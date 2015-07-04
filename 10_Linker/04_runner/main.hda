@@ -1,0 +1,23 @@
+.data
+_sHello db 'hello', 0
+_sWorld db 'world', 0
+
+.code
+_main:
+push ebp
+mov ebp, esp
+
+_cond1_if:
+cmp 1, 1
+jnz _cond1_else
+
+handy puts, _sHello
+jmp _cond1_endif
+
+_cond1_else:
+handy puts, _sWorld
+
+_cond1_endif:
+mov esp, ebp
+pop ebp
+exit

@@ -1,0 +1,19 @@
+.data
+_sHelloWorld db 'Hello, world!', 0
+
+.code
+;===========================
+; proc main
+;===========================
+_main:
+push ebp
+mov ebp, esp
+
+push _sHelloWorld
+call _puts
+add esp, 4
+
+_end:
+mov esp, ebp
+pop ebp
+exit

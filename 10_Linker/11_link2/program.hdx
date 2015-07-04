@@ -1,0 +1,44 @@
+.data
+db 'hello, world!',0
+db 'Entered String: ',0
+db 'Entered Number: ',0
+
+.code
+push ebp
+mov ebp,esp
+mov edx,[ebp+0x8]
+mov eax,[ebp+0xc]
+add eax,edx
+mov esp,ebp
+pop ebp
+ret
+push ebp
+mov ebp,esp
+push 0x0000
+call 0x0000
+add esp,4
+push 4
+push 3
+call 0x0000
+add esp,8
+push eax
+call 0x0000
+add esp,4
+mov esp,ebp
+pop ebp
+ret
+push ebp
+mov ebp,esp
+handy puts,0x0000
+handy puts,[ebp+0x8]
+mov esp,ebp
+pop ebp
+ret
+push ebp
+mov ebp,esp
+handy puts,0x0000
+handy putn,[ebp+0x8]
+mov esp,ebp
+pop ebp
+ret
+

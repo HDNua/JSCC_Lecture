@@ -1,0 +1,34 @@
+.data
+_sEnteredString db 'Entered String: ', 0
+_sEnteredNumber db 'Entered Number: ', 0
+
+.code
+;====================================
+; proc prints
+; receives: start address of string
+; returns: none
+;====================================
+  global _prints
+_prints:
+push ebp
+mov ebp, esp
+handy puts, _sEnteredString
+handy puts, [ebp+0x8]
+mov esp, ebp
+pop ebp
+ret
+
+;====================================
+; proc prints
+; receives: number to print
+; returns: none
+;====================================
+  global _printn
+_printn:
+push ebp
+mov ebp, esp
+handy puts, _sEnteredNumber
+handy putn, [ebp+0x8]
+mov esp, ebp
+pop ebp
+ret

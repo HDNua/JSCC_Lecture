@@ -1,0 +1,51 @@
+.data
+_sHelloWorld db 'hello, world!', 0
+
+.code
+  extern _prints
+  extern _printn
+
+;====================================
+; proc sum
+; receives: 2 integers
+; returns: sum of 2 parameters
+;====================================
+_sum: 
+push ebp
+mov ebp, esp
+
+mov edx, [ebp+0x8]
+mov eax, [ebp+0xc]
+add eax, edx
+
+mov esp, ebp
+pop ebp
+ret
+
+;====================================
+; proc main
+;====================================
+_main:
+push ebp
+mov ebp, esp
+
+; hello, world!를 출력합니다.
+push _sHelloWorld
+call _prints
+add esp, 4
+
+; 3+4의 계산 결과를 출력합니다.
+push 4
+push 3
+call _sum
+add esp, 8
+push eax
+call _printn
+add esp, 4
+
+mov esp, ebp
+pop ebp
+ret
+
+; 프로그램의 시작 지점이 _main 레이블임을 알립니다.
+end _main

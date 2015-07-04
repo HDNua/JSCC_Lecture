@@ -1,0 +1,10 @@
+.data
+_sHi db 'hi', 0
+
+.code
+_sayHi:
+handy puts, _sHi
+ret
+
+_main:
+exit
