@@ -1,0 +1,30 @@
+.code
+global _main
+_main:
+; 프로시저 시작 시에 스택을 확보합니다.
+push ebp
+mov ebp, esp
+
+; 4바이트 메모리를 확보합니다.
+sub esp, 4
+
+; 8바이트 메모리를 확보합니다.
+sub esp, 8
+
+; [ebp-8] 메모리에 10을 대입합니다.
+mov [ebp-8], 10
+; [ebp-12] 메모리에 20을 대입합니다.
+mov [ebp-12], 20
+
+; 덧셈 연산을 수행합니다.
+mov eax, [ebp-8]
+add eax, [ebp-12]
+mov [ebp-4], eax
+
+; 프로시저 종료 시의 루틴입니다.
+mov esp, ebp
+pop ebp
+ret
+
+; 프로그램의 시작 지점은 _main입니다.
+end _main
