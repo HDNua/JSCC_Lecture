@@ -1,18 +1,21 @@
-235
-112
-396
-848
-146
-534
-595
-173
-12
-97
-8
-338
-277
-333
-13
-280
------
-4397
+72	common.js
+282	handy.js
+13	Machine.js
+373	MachineMemory.js
+284	MachineOperation.js
+352	MachineProcessor.js
+8	MachineSystem.js
+98	main.html
+10	package.json
+41	Program.js
+187	ProgramCompiler.js
+599	ProgramCompilerDeclaration.js
+742	ProgramCompilerExpression.js
+555	ProgramCompilerStatement.js
+203	ProgramCompilerTranslator.js
+848	ProgramLinker.js
+396	ProgramRunner.js
+112	ProgramStream.js
+235	StringBuffer.js
+--------------------------------------------------
+5410	Line Count
